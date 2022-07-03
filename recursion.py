@@ -65,5 +65,17 @@ def id_element(array, element, i):
 	return id_element(array, element, i+1)
 	
 
-	
+# Palindrome detector
+# Since strings are arrays, you can do this with any array of even or odd size 
+# Note, for odd-size arrays we can ignore the middle element, hence the integer division
+# This is another example of two base cases. The first if statement accounts for if we 
+# recursively reach the center of the array. If we do, and the array is palindrome, we can return True and be done. 
+# On the other hand, if at any time in the recursion we reach a state where the array isn't a palindrome, we terminate immediately by returning False.
+def is_palindrome(array, i):
+	if i >= len(array)//2:
+		if array[i] == array[len(array)-(1+i)]: 
+			return True
+	if array[i] != array[len(array)-(1+i)]: 
+		return False
+	return is_palindrome(array, i+1)	
     
