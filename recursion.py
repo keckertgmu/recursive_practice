@@ -83,7 +83,9 @@ def is_palindrome(array, i):
 # Fibonacci Sequence
 # Calculate the nth element of the fibonacci sequence. 
 # 0, 1, 1, 2, 3, 5, 8, 13 etc. Each number is the same as the two before it.
-# In this example, I use three base cases to account for the initial 0, 1, and 1. Hence n-3 in the final elif
+# In this example, I use three base cases to account for the initial 0, 1, and 1. Hence n-3 in the final elif (and the fourth base case)
+# Note that the operations in this version of the Fibonacci sequences are all simple (if/else and addition).
+# Accordingly, the time complexity of this version should be lower (potentially much lower) than the "canonical" example (shown below). 
 def fibonacci(n, i, a, b):
 	if n==1: return a
 	elif n==2: return b
