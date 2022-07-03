@@ -89,7 +89,7 @@ def fibonacci(n, i, a, b):
 	elif n==2: return b
 	elif n==3: return a+b
 	elif i==n-3: return (a+b)
-	return fibonacci(n, i+1, b, a+b)
+	return fibonacci(n, i+1, b, a+b) # this is where the magic happens. The important calculcations are done here in the arguments of the function call (b, a+b)
 	
 # Here is another version
 # This version is more elegant than the above version. It takes a subtractive approach, with the iterative portion iterating backwords from n until it can find something to add.
