@@ -79,3 +79,31 @@ def is_palindrome(array, i):
 		return False
 	return is_palindrome(array, i+1)	
     
+	
+# Fibonacci Sequence
+# Calculate the nth element of the fibonacci sequence. 
+# 0, 1, 1, 2, 3, 5, 8, 13 etc. Each number is the same as the two before it.
+# In this example, I use three base cases to account for the initial 0, 1, and 1. Hence n-3 in the final elif
+def fibonacci(n, i, a, b):
+	if n==1: return a
+	elif n==2: return b
+	elif n==3: return a+b
+	elif i==n-3: return (a+b)
+	return fibonacci(n, i+1, b, a+b)
+	
+# Here is another version
+# This version is more elegant than the above version. It takes a subtractive approach, with the iterative portion iterating backwords from n until it can find something to add.
+# This contrasts with the above version, which iterates from 0 to n-3.  
+# However, there is a subtle issue with the below implementation: For n=1 the function returns 1. However, the first element of the fibonnaci sequence is 0
+# Recall that normally, when discussing a set, we don't refer to the zeroeth element. Typically, an index of 0 corresponds to the first element of a set. 
+# However, in this implementation, n refers to the index of the set. Accordingly, for a user interested in the 10th element of the fibonacci sequence, n-1 should be input instead.
+def fibonacci2(n):
+	if n<2 : return n
+	return fibonacci2(n-1) + fibonacci2(n-2)
+
+# This function uses the above fibonacci function and corrects the index issue. 
+def fixedonacci(n):
+	return fibonacci2(n-1)
+
+
+# TODO: Recursive slicing of permutations of a string
