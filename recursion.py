@@ -108,4 +108,44 @@ def fixedonacci(n):
 	return fibonacci2(n-1)
 
 
-# TODO: Recursive slicing of permutations of a string
+# Permutator
+# For a given string, print out all permutations of that string (or, if you prefer, for an array, print out each possible arrangement of elements in that array)
+# For example, ABC -> ABC, ACB, BAC, BCA, CAB, CBA
+# This is an example of array slicing. We want to take parts of the array and recombine them using concatonation
+def permutations(array):
+	output = []
+	if len(array) <= 1: 
+		output.append(array)
+		return output # or simply return array
+	for i,element in enumerate(array):
+		for permutation in permutations(array[:i] + array[i+1:]): # this is where the magic happens. 
+			output.append(element + permutation) # or output += [element + permutation]
+	return output
+
+# Here is a version using a for-loop instead of enumerate, to help make what's going on a touch clearer. 
+def perm2(arr):
+	output = []
+	if len(arr) < 2:
+		return arr
+	else:
+		i = 0
+		for element in arr: # This could be a while loop. while i<len(arr), and element becomes arr[i] below. 
+			for permutation in perm2(arr[:i] + arr[i+1:]):
+				output += [element + permutation]
+			i+=1
+	return output
+	
+# The line "for permutation in perm2(arr[:i] + arr[i+1:])" is critical. 
+# The argument for perm2() is capturing all of the string characters not corresponding to the current index (i) of the input array. 
+# The highest level call of perm2() will execute len(arr) times. The first recursion will execute the for-loop len(array)-1 times, and so forth.
+# This continues until we reach the base case and simply return the relevant character of the input string (or array). 
+# Also note that "for permutation in perm2(arr[:i] + arr[i+1:])" is using the call stack. The recursive calls to perm2() are evaluated before 
+# higher level calls of the function, and the highest level call of the function is evaluated last. This means that the recursive function calls 
+# have returned an array with a knowable length before the higher level calls are evaluated. This is how that line knows to loop for a finite number 
+# of times. It is roughly equivalent to replacing "for permutation in perm2(arr[:i] + arr[i+1:])" with a while loop that would look something like:
+#	while x < len(perm2()):
+#		output += []
+#		x++
+# You can replace the for loops with while loops if you wish. 
+# Note, for an input with repeat values ("aabc") these permutation functions do not "clean" the resulting array to remove duplicates that will occur. 
+# To remove duplicates is trivial and left as an exercise for the reader. 
